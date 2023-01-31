@@ -1,8 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
-import { verify, Secret } from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 import { Token } from '../interface';
 
 const segredo = process.env.JWT_SECRET || 'segredinho';
+const jwtSecret: object = { expiresIn: '9d', algorithm: 'HS256' };
+
+export const createToken = (data: Token) => {
+  const newToken = jwt.sign({ data }, segredo, jwtSecret);
+  return newToken;
+};
 
 const validation = (req: Request, res: Response, next: NextFunction) => {
   const token = req.header('Authorization');
@@ -11,7 +17,7 @@ const validation = (req: Request, res: Response, next: NextFunction) => {
       .json({ message: 'Token not found' });
   }
   try {
-    const check = verify(token, segredo as Secret);
+    const check = jwt.verify(token, segredo as jwt.Secret);
     const { payload } = check as Token;
     req.body.user = payload;
     return next();
