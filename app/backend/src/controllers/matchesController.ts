@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import modelTeams from '../database/models/Teams';
 import service from '../services/matchesServicer';
 
 const list = async (_req: Request, res: Response) => {
@@ -13,6 +14,21 @@ const list = async (_req: Request, res: Response) => {
     .json(check.message);
 };
 
+const create = async (req: Request, res: Response) => {
+  const { user, ...match } = req.body;
+  const checkHome = await modelTeams.findByPk(match.homeTeamId);
+  const checkAway = await modelTeams.findByPk(match.awayTeamId);
+  if (!checkHome || !checkAway) {
+    return res.status(404).json({ message: 'There is no team with such id!' });
+  }
+  const { type, message } = await service.create(match);
+  if (type) {
+    return res.status(404).json(message);
+  }
+  return res.status(201).json(message);
+};
+
 export default {
   list,
+  create,
 };

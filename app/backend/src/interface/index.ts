@@ -20,3 +20,12 @@ export interface IResponse {
   type: number | null ;
   message: string | unknown;
 }
+
+export interface IMatch {
+  id?: number;
+  homeTeamId: number,
+  homeTeamGoals: number,
+  awayTeamId: number,
+  awayTeamGoals: number,
+  inProgress?: boolean,
+}
