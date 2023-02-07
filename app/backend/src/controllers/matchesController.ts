@@ -19,13 +19,16 @@ const create = async (req: Request, res: Response) => {
   const checkHome = await modelTeams.findByPk(match.homeTeamId);
   const checkAway = await modelTeams.findByPk(match.awayTeamId);
   if (!checkHome || !checkAway) {
-    return res.status(404).json({ message: 'There is no team with such id!' });
+    return res.status(404)
+      .json({ message: 'There is no team with such id!' });
   }
   const { type, message } = await service.create(match);
   if (type) {
-    return res.status(404).json(message);
+    return res.status(404)
+      .json(message);
   }
-  return res.status(201).json(message);
+  return res.status(201)
+    .json(message);
 };
 
 export default {
