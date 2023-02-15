@@ -23,6 +23,10 @@ const progress = async (inProgress: boolean):Promise<IResponse> => {
   return { type: null, message: check };
 };
 
+const update = async (id:number, results: Partial<IMatch>) => {
+  await model.update({ ...results }, { where: { id } });
+};
+
 const create = async (match: IMatch) => {
   const { homeTeamId, awayTeamId } = match;
   const team = await modelTeams.findOne({ where: { id: homeTeamId } });
@@ -45,4 +49,5 @@ export default {
   progress,
   create,
   corrigindo,
+  update,
 };

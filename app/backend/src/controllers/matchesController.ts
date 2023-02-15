@@ -14,6 +14,13 @@ const list = async (_req: Request, res: Response) => {
     .json(check.message);
 };
 
+const update = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  await service.update(Number(id), req.body);
+  return res.status(200)
+    .json({ message: 'Updated' });
+};
+
 const create = async (req: Request, res: Response) => {
   const { user, ...match } = req.body;
   const checkHome = await modelTeams.findByPk(match.homeTeamId);
@@ -41,4 +48,5 @@ export default {
   list,
   create,
   progress,
+  update,
 };
