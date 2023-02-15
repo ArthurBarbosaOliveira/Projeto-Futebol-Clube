@@ -31,7 +31,14 @@ const create = async (req: Request, res: Response) => {
     .json(message);
 };
 
+const progress = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { message } = await service.corrigindo(Number(id));
+  return res.status(200).json(message);
+};
+
 export default {
   list,
   create,
+  progress,
 };

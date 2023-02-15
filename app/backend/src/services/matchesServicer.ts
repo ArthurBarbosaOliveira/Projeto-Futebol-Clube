@@ -35,8 +35,14 @@ const create = async (match: IMatch) => {
   return { type: null, message: matche };
 };
 
+const corrigindo = async (id: number) => {
+  await model.update({ inProgress: false }, { where: { id } });
+  return { type: null, message: 'Finished' };
+};
+
 export default {
   list,
   progress,
   create,
+  corrigindo,
 };
