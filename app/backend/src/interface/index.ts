@@ -16,9 +16,17 @@ export interface Token {
   }
 }
 
-export interface IResponse {
-  type: number | null ;
-  message: string | unknown;
+export interface ILeader {
+  name: string;
+  totalPoints: number;
+  totalGames: number;
+  totalVictories: number;
+  totalDraws: number;
+  totalLosses: number;
+  goalsFavor: number;
+  goalsOwn: number;
+  goalsBalance: number;
+  efficiency: string;
 }
 
 export interface IMatch {
@@ -28,4 +36,9 @@ export interface IMatch {
   awayTeamId: number,
   awayTeamGoals: number,
   inProgress?: boolean,
+}
+
+export interface IResponse {
+  type: number | null ;
+  message: string | unknown;
 }

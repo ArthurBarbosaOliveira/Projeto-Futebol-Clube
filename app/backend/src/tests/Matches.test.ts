@@ -16,23 +16,23 @@ const { expect } = chai;
 
 describe('Testar a rota de Matcher', function () {
     let chaiHttpResponse: Response;
-  
+
     before(async () => {
       sinon
         .stub(modelMatched, "findAll")
         .resolves(Matches as unknown as modelMatched[]);    
     });
-  
+
     after(()=>{
       (modelMatched.findAll as sinon.SinonStub).restore();
     })
-  
+
     it('Testar o retorno da classificação', async () => {
       chaiHttpResponse = await chai
       .request(app)
       .get('/matches')
-  
+
       expect(chaiHttpResponse.body).to.length(40);  
     });
-  
+
   });

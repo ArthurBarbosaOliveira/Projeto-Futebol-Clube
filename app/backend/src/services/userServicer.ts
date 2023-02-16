@@ -1,6 +1,6 @@
 import { sign, SignOptions } from 'jsonwebtoken';
 import { compareSync } from 'bcryptjs';
-import { ILogin, IResponse } from '../interface';
+import { ILogin } from '../interface';
 import Users from '../database/models/User';
 
 const segredo = process.env.JWT_SECRET || 'segredinho';
@@ -16,7 +16,7 @@ const Token = (id: number, role: string):string => {
   return token;
 };
 
-const loginService = async (login: ILogin): Promise<IResponse> => {
+const loginService = async (login: ILogin) => {
   const user = await Users.findOne({ where: { email: login.email } });
 
   if (!user) {
