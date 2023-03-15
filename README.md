@@ -14,7 +14,7 @@
 
 
 
-# Orientações
+# :globe_with_meridians: Orientações
 
 <details>
 <summary><strong>⚙️ Estrutura do projeto</strong></summary><br />
@@ -102,5 +102,10 @@ Na sua máquina você deve ter:
 
 </details>
 
+# :bar_chart: Tecnologias Utilizadas
 
-
+- [Nodejs](https://nodejs.org/en/)
+- [Docker](https://www.docker.com/)
+- [Express](https://expressjs.com/pt-br/)
+- [Sequelize](https://sequelize.org/)
+- [TypeScript](https://www.typescriptlang.org/)
